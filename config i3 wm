@@ -106,7 +106,7 @@ for_window [class="Google-chrome"] move to workspace $workspace2
 for_window [class="Spotify"] move to workspace $workspace10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+#bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
@@ -169,8 +169,7 @@ bar {
 }
 
 # Lock computer using i3lock
-#bindsym $od+Shift+x exec i3lock --color 475263
-bindsym $mod+Shift+x exec --no-startup-id bash /home/jasper/.config/i3lock.sh
+bindsym $mod+Shift+x exec --no-startup-id bash /home/jasper/.config/i3lock/I3lock.sh
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
@@ -184,7 +183,8 @@ bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -width 50 -padding 50 -opacity
 bindsym $mod+shift+w exec qutebrowser.sh
 
 # Startup Programs
-exec_always feh --bg-scale ~/Bilder/Wallpapers/I3.jpg
+#exec_always feh --bg-scale ~/Bilder/Wallpapers/I3.jpg
+exec_always feh --bg-scale ~/Bilder/Wallpapers/aerial.jpg
 exec_always --no-startup-id dropbox start
 exec xrandr --output DP-2 --auto --output HDMI-2 --auto --left-of HDMI2
 exec --no-startup-id compton --config /home/jasper/.config/i3/compton.conf

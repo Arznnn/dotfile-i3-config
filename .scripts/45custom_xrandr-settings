@@ -1,0 +1,39 @@
+#/etc/X11/Xsession.d/45custom_xrandr-settings
+
+# Hier die Bezeichner der Bildschirme eintragen
+INTERNAL_OUTPUT="eDP1"
+EXTERNAL_OUTPUT="LVDM"
+
+xrandr --newmode "1024x768_59.90"  64.00  1024 1080 1184 1344  768 769 772 795  -HSync +Vsync
+xrandr --addmode eDP1  "1024x768_59.90"
+xrandr --output eDP1 --mode "1024x768_60.00"
+
+#Erweiterter Desktop beim Start des XServers
+
+# EXTERNAL_LOCATION kann sein: left, right, above, oder below
+EXTERNAL_LOCATION="right"
+ 
+case "$EXTERNAL_LOCATION" in
+       left|LEFT)
+               EXTERNAL_LOCATION="--left-of $INTERNAL_OUTPUT"
+               ;;
+       right|RIGHT)
+               EXTERNAL_LOCATION="--right-of $INTERNAL_OUTPUT"
+               ;;
+       top|TOP|above|ABOVE)
+               EXTERNAL_LOCATION="--above $INTERNAL_OUTPUT"
+               ;;
+       bottom|BOTTOM|below|BELOW)
+               EXTERNAL_LOCATION="--below $INTERNAL_OUTPUT"
+               ;;
+       *)
+               EXTERNAL_LOCATION="--left-of $INTERNAL_OUTPUT"
+               ;;
+esac
+ 
+xrandr |grep $EXTERNAL_OUTPUT | grep " connected "
+if [ $? -eq 0 ]; then
+    xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --auto $EXTERNAL_LOCATION
+else
+    xrandr --output $INTERNAL_OUTPUT --auto --output $EXTERNAL_OUTPUT --off
+fi

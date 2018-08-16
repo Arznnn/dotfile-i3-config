@@ -1,0 +1,11 @@
+export TEXINPUTS=.:$HOME/Bilder//:$TEXINPUTS
+export BIBINPUTS=.:$HOME/HGW/Literatur//:$BIBINPUTS
+export BSTINPUTS=.:$HOME/HGW/Literatur//:$BSTINPUTS
+
+htlatex $1.tex
+rm -f $1.idv $1.lg $1.tmp $1.4tc $1.xref $1.4ct
+zip /tmp/$$.zip $1.html $1.css $1*x.png
+lowriter $1.html
+echo "pack [button .h -text \"/tmp/$$.zip contains html and related files for\ncollaborator to unpack into one folder, or:\n\nClick Edit ... Links ... Break Link\nClick View and uncheck Notes, then\nSave as Word 97/2000/XP and exit OpenOffice\" -command exit]" | wish
+rm -f $1*x.png ${1}2.html $1.dvi
+

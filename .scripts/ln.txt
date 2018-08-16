@@ -1,0 +1,4 @@
+# If you want to recursively create the directories and only link files (so that if you create a file within a directory, it really is in /usr/lib not /mnt/usr/lib), you could do this:
+cd /usr/lib
+find /mnt/usr/lib -mindepth 1 -depth -type d -printf "%P\n" | while read dir; do mkdir -p "$dir"; done
+find /mnt/usr/lib -type f -printf "%P\n" | while read file; do ln -s "/mnt/usr/lib/$file" "$file"; done

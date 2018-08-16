@@ -1,0 +1,4 @@
+cfi	~/.config/i3/config
+cfr	~/.config/ranger/rc.conf
+cfv	~/.vimrc
+cfb	~/.bashrc

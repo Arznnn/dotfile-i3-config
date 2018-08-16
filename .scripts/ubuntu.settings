@@ -1,0 +1,2 @@
+dconf write /com/canonical/unity/always-show-menus true
+

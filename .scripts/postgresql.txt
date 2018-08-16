@@ -1,0 +1,21 @@
+# Mit dem Uni Greifswald Netz verbinden oder einen Rechner im Netz benutzen
+# öffentlichen ssh Key zur Verfügung stellen, damit ein ZugangsAccount eingerichtet werden kann
+ssh 'jansen@botanik4.botanik.uni-greifswald.de'
+sudo su postgres 
+psql -d indicia
+set search_path = indicia,"$user",public;
+\dt
+\d+ taxa_taxon_lists
+\d occurrences
+SELECT Count(*) FROM detail_surveys;
+SELECT id, title FROM detail_surveys LIMIT 10;
+% 7 | DE-MV-HöherePflanzen-Altdaten-O % Daten aus den Tabellen %'hoeherePflanzen_inputdata' und 'hoeherePflanzen_daten' mit dem Attribut USER='O'
+%     8 | DE-MV-HöherePflanzen-Altdaten-L
+%     9 | DE-MV-HöherePflanzen-Altdaten-R
+%    10 | DE-MV-HöherePflanzen-Altdaten-K
+\d detail_occurrences
+SELECT id, taxon, location_name, date_start, date_end, date_type FROM detail_occurrences WHERE survey_id = 7 LIMIT 10; %28040
+SELECT Count(*) FROM detail_occurrences WHERE  survey_id = 8; % 19666
+SELECT Count(*) FROM detail_occurrences WHERE  survey_id = 9; % 414387
+SELECT Count(*) FROM detail_occurrences WHERE  survey_id = 10; % 40739
+

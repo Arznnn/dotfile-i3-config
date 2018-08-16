@@ -1,0 +1,35 @@
+#!/bin/bash
+
+usage()
+{
+    echo "Usage: mtp_switch vendor_id product_id"
+    echo "  switch usb device driver from mtp to usb storage."
+    exit 1
+}
+
+[ $# = "2" ] || usage
+
+vendor="$1"
+product="$2"
+
+die()
+{
+    echo "$@"
+    exit 1
+}
+
+find_bus_id()
+{
+    cd /sys/bus/usb/devices/
+    for f in *:* ; do
+    if grep -qi "^usb:v${vendor}p${product}" "$f/modalias" 2>/dev/null; then
+        echo $f
+        return
+    fi
+    done
+}
+
+driver()
+{
+    readlink "/sys/bus/usb/devices/$bus_id/driver"
+}

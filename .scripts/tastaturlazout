@@ -1,0 +1,15 @@
+Öffnen Sie ein Terminalfenster, und geben Sie den Befehl sudo dpkg-reconfigure keyboard-configuration ein. Als Tastaturmodell wählen Sie Generische Tastatur mit 105 Tasten (Intl), als Herkunftsland für die Tastatur und als Tastaturbelegung Deutsch aus. Für die übrigen Optionen empfiehlt es sich, erst einmal die Standardwerte mit der Eingabetaste zu akzeptieren.
+Tastaturbelegung: Ein falsches Keyboard-Layout lässt sich in Ubuntu mit Bordmitteln wieder umstellen.Tastaturbelegung: Ein falsches Keyboard-Layout lässt sich in Ubuntu mit Bordmitteln wieder umstellen.Tastaturbelegung: Ein falsches Keyboard-Layout lässt sich in Ubuntu mit Bordmitteln wieder umstellen.
+Falls darüber hinaus auch der Zeichensatz verstellt sein sollte, können Sie dies mit dem Kommando sudo dpkg-reconfigure console-setup korrigieren. Achten Sie darauf, dass für Kodierung der Eintrag UTF-8 und als unterstützender Zeichensatz Kombiniert - Latein, slawisches Kyrillisch, Griechisch eingestellt ist.
+
+
+locale -a
+ .xinitrc 
+dpkg-reconfigure console-setup
+
+# nano /etc/X11/xinit/xinitrc.i3
+Just before the Start i3 section you can specify the desired keymap (eg. gb):
+
+setxkbmap de
+
+bindsym Mod4+x exec i3-exit

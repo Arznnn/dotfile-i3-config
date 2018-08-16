@@ -1,0 +1,8 @@
+Locate your Mendeley SQLite Library (~/Library/Application Support/Mendeley Desktop/youremail@www.mendeley.com.sqlite)
+from your terminal type:
+sqlite3 your-email-address\@www.mendeley.com.sqlite
+Type:
+SELECT COUNT(*) as entries, citationkey FROM Documents GROUP BY citationkey HAVING entries > 1;
+This basically queries the table "Documents" for all duplicate citation keys.
+Then,
+DELETE FROM Documents WHERE id NOT IN (SELECT MAX(id) FROM Documents GROUP BY citationkey);

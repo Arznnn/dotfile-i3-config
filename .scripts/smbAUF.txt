@@ -1,0 +1,2 @@
+sudo mount --verbose -t cifs -o username=jansen,domain=lu,sec=ntlmv2,vers=3.0,uid=1000,gid=1000 //139.30.107.200/prof/loe/ /home/jansen/nvs
+

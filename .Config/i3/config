@@ -1,7 +1,7 @@
 # Set Alt key to be Mod key
 set $mod Mod1
 
-font pango:System San Francisco Display 11
+font pango:System San Francisco Display 10
 
 # thin borders
 hide_edge_borders both
@@ -65,7 +65,7 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $workspace1 "Editor"
+set $workspace1 "Editor "
 set $workspace2 "Browser"
 set $workspace3 "3"
 set $workspace4 "4"
@@ -153,23 +153,22 @@ client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
+
 # bar
 bar {
-   status_command i3blocks -c ~/.config/i3/i3blocks.conf
-#   status_command i3blocks cd ~/.config/i3/i3blocks.conf
-#   status_command i3blocks cd /home/jasper/.config/i3/i3blocks.conf
-    colors {
-        background $bg-color
-            separator #757575
-        #                  border             background         text
-        focused_workspace  $bg-color          $bg-color          $text-color
-        inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-        urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-    }
+  	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	colors {
+		background $bg-color
+	    	separator #757575
+		#                  border             background         text
+		focused_workspace  $bg-color          $bg-color          $text-color
+		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+	}
 }
 
 # Lock computer using i3lock
-bindsym $mod+Shift+x exec --no-startup-id bash /home/jasper/.config/i3lock/I3lock.sh
+bindsym $mod+Shift+x exec --no-startup-id bash ~/.config/i3lock/i3lock.sh
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
@@ -177,19 +176,19 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%; exec
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 #key binding
-bindsym $mod+Shift+f exec google-chrome
+bindsym $mod+Shift+f exec google-chrome-stable
 bindsym Print exec screenshot
 bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -width 50 -padding 50 -opacity "200" -bw 2 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font
 bindsym $mod+shift+w exec qutebrowser.sh
 
 # Startup Programs
 #exec_always feh --bg-scale ~/Bilder/Wallpapers/I3.jpg
-exec_always feh --bg-scale ~/Bilder/Wallpapers/aerial.jpg
+exec_always feh --bg-scale ~/images/wallpapers/alena-aenami-quiet-1px.jpg
 exec_always --no-startup-id dropbox start
 exec xrandr --output DP-2 --auto --output HDMI-2 --auto --left-of HDMI2
 exec --no-startup-id compton --config /home/jasper/.config/i3/compton.conf
 exec_always --no-startup-id python /home/jasper/.config/i3/tilling.py
-
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #285577 #ffffff #285577   #285577
@@ -206,3 +205,5 @@ gaps inner 5
 gaps outer 5
 bindsym $mod+z gaps outer current plus 5
 bindsym $mod+Shift+z gaps outer current minus 5
+
+exec setxkbmap -layout de
